@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>API Documentation</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Using Movie Database API to Create Frontend Applications</h1>
+    <p>
+      The movie database API is an automatically updating and ever-changing
+      documentation list that allows information from select films to be
+      displayed in any way the end user intends. To understand exactly how to
+      use this API, we must first understand what exactly an API is and how to
+      integrate it within a project. API stands for Application Programming
+      Interface, and it creates a way in which information can be passed between
+      applications. In this particular case, the API is a database which stores
+      information about an entire list of movies in a handy (JSON) format (back
+      end). This information can then be parsed and sent to the front end and
+      edited as the developer sees fit.
+    </p>
+    <h3>To Utilize this API You Will Need:</h3>
+    <p>
+      • Text Editor <br>
+      • Knowledge of object oriented programming (specifically JavaScript)<br>
+      • Modern browser (The purpose of the browser is to easily inspect the JSON of a
+      given element when it is displayed in the UI) <br>
+      • API Key (The unique API key allows you to gain access to the database so that you can make your
+      own changes)
+    </p>
+    <h3>API Operation</h3>
+    <p>
+      Obtaining a unique API key is as simple as searching “movie database api”
+      in your browser and finding any site that will allow you to copy a key. In
+      most cases, you will have to agree to terms of use. The key should be a
+      sequence of numbers and letters and look similar to this:
+    </p>
+    <div class="snippet"><p><code >1e28f4c216d1d39ebe3ae68a7xc654f5</code></p></div>
+    <p>
+      Once you have copied your key, you will need to insert it into your editor
+      of choice so that it can be used by other parts of your application. The
+      easiest way to do this is to store it in a variable in a <code>.env</code> file that
+      can be reused throughout the project. To do this, simply create a file with
+      extension <i> env </i>somewhere in your tree and create a variable with a semantic
+      name that is easy to remember. When you are done, it should look similar
+      to this:
+    </p>
+    <div class="snippet"><p><code class="primordial"> NEXT_PUBLIC_API_KEY=1e28f4c216d1d39ebe3ae68a7xc654f5</code></p></div>
+    <h3>Front-end Operation</h3>
+    <p>
+      This API key is useful because it makes it so that a developer can have
+      dynamic information relayed to the front-end application. In turn, this
+      limits static content and permits scalability whenever the developer wants
+      to update or add to the project.
+    </p>
+    <p>
+      For my use case, I will be translating information from my <span class="snippet">env </span> file to my
+      front-end Typescript project:
+    </p>
+    <div class="snippet">
+    <p id="snippet1"> 
+      <code> 
+      <pre>
+<colorme7>async function</colorme7> <colorme3>fetchMovie</colorme3>() {
+  <colorme7>const</colorme7> <colorme5>data</colorme5> = <colorme7>await</colorme7> <colorme2>fetch</colorme2><colorme9>(</colorme9>
+    <colorme8 class="under">`https://api.themoviedb.org/3/</colorme8><colorme7 class="under">$</colorme7>{
+      <colorme5>movie</colorme5>?.media_type <colorme7>===</colorme7> <colorme8>'tv'</colorme8> <colorme7>?</colorme7> <colorme8>'tv'</colorme8> <colorme7>:</colorme7> <colorme8>'movie'</colorme8>
+    }/<colorme7>$</colorme7><colorme6>{</colorme6><colorme5>movie</colorme5>?.id<colorme6>}</colorme6><colorme8>?api_key=</colorme8><colorme7>$</colorme7>{
+      process.env.<colorme5>NEXT_PUBLIC_API_KEY</colorme5>
+    <colorme8>}&language=en-US&append_to_resoponse=videos`</colorme8>
+  <colorme9>)</colorme9>.<colorme3>then</colorme3><colorme9>(</colorme9><colorme3>(</colorme3><colorme6>response</colorme6><colorme3>)</colorme3> => <colorme6>response</colorme6>.<colorme3>json</colorme3><colorme3>()</colorme3><colorme9>)</colorme9>
+      </pre>
+     </code> 
+    </p>
+  </div>
+    <p>
+      This snippet displays variables from the JSON being used in order to
+      develop the user interface. This is where your browser will come in handy,
+      as it will let you peek into the console and see exactly what parameters
+      are included. To see this, right click in your browser and click <i>inspect</i>; alternatively, hit
+      <kbd>Ctrl+Shift+I</kbd>, or <kbd>F12</kbd> on your keyboard. Then, navigate to the console and you should see it
+      packaged within a neatly wrapped object. Below is some data in object notation format for
+      the movie “Prey”.
+    </p>
+    <div class="snippet">
+    <p id="snippet2">
+      <code>
+    <pre>
+  <colorme2>
+  adult: <colorme3>false</colorme3>
+  backdrop_path: <colorme4>"/72009yoEU2.jpg"</colorme4>
+  id: <colorme3>766507</colorme3>
+  original_language: <colorme4>"en"</colorme4>
+  original_title: <colorme4>"Prey"</colorme4>
+  overview: <colorme4>"When danger threatens her camp, the..."</colorme4>
+  popularity: <colorme3>2527.022</colorme3>
+  release_date: <colorme4>"2022-08-02"</colorme4>
+  </colorme2>
+    </pre>
+      </code>
+    </p>
+  </div>
+    <p>
+      As you can see, this object holds vital information regarding a given
+      movie. These can even be customized within the database to display other
+      criteria, such as but not limited to: genre, tv or movie, and subtitle
+      language.
+    </p>
+    <h3>Practical Integration</h3>
+<p>Using the following information:</p>
+    <p>
+    <div class="hidden"></div>
+    backdrop path:
+    <div class="snippet">
+    <p id="snippet3">
+      <code class="primordial">
+      <pre>
+<colorme3>src</colorme3><colorme7>=</colorme7><colorme6>{</colorme6><colorme8>`</colorme8><colorme7>$</colorme7><colorme6>{</colorme6><colorme5>baseUrl</colorme5><colorme6>}</colorme6><colorme7>$</colorme7><colorme6>{</colorme6><colorme5>movie</colorme5>?.backdrop_path <colorme7>||</colorme7> <colorme5>movie</colorme5>?.poster_path<colorme6>}</colorme6><colorme8>`</colorme8><colorme6>}</colorme6>
+      </pre>
+      </code>
+    </p>
+  </div>
+    movie title:
+    <div class="snippet">
+    <p id="snippet4" class="snippet">
+      <code>
+        <pre>
+<colorme7>&lt;h1&gt;</colorme7>
+  <colorme6>{</colorme6><colorme5>movie</colorme5>?.title <colorme7>||</colorme7> <colorme5>movie</colorme5>?.name <colorme7>|| </colorme7><colorme5>movie</colorme5>?.original_name<colorme6>}</colorme6>
+<colorme7>&lt;/h1&gt;</colorme7>
+        </pre>
+      </code>
+    </p>
+  </div>
+    movie overview:
+    <div class="snippet">
+    <p id="snippet5" class="snippet">
+      <code>
+        <pre>
+<colorme7>&lt;p&gt;</colorme7>
+  <colorme6>{</colorme6><colorme5>movie</colorme5>?.overview<colorme6>}</colorme6>
+<colorme7>&lt;/p&gt;</colorme7>
+        </pre>
+      </code>
+    </p>
+  </div>
+</p>
+<p>the result is,</p>
+<span>
+<img src="backdrop.png" alt="backdrop of movie 'prey'"> 
+</span>
+<p>The page can even be reloaded to show a different, random movie, while the code stays consistent. 
+In other words, we can create a beautiful and dynamic changing UI that doesn’t need to be constantly
+updated by the developer to remain relevant. </p>
+<p>When used correctly, backend API knowledge can significantly streamline the  development process 
+and make way for more complex configurations and implementation into your user interface. </p>
+    <script src="" async defer></script>
+  </body>
+</html>

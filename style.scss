@@ -1,0 +1,63 @@
+* {
+  background: hsl(0, 0%, 90%);
+}
+
+h1 {
+  font-size: xx-large;
+}
+h3 {
+  font-size: x-large;
+}
+p {
+  font-size: larger;
+}
+code {
+  font-size: 1.2em;
+  font-weight: 550;
+  color: hsl(0, 0%, 35%);
+}
+.primordial {
+  font-size: 1.05em;
+}
+.under {
+  text-decoration: underline;
+}
+
+body {
+  padding: 1% 35% 4% 2%;
+}
+
+div {
+  width: 480px;
+  padding: 0 10px 0 20px;
+  border: 2px solid hsl(0, 0%, 50%);
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+colorme2 {
+  color: hsl(191, 54%, 33%);
+}
+colorme3 {
+  color: hsl(133, 73%, 33%);
+}
+colorme4 {
+  color: hsl(300, 100%, 33%);
+}
+colorme5 {
+  color: hsl(300, 90%, 28%);
+}
+colorme6 {
+  color: hsl(16, 100%, 66%);
+}
+colorme7 {
+  color: hsl(345, 79%, 64%);
+}
+colorme8 {
+  color: hsl(60, 70%, 44%);
+}
+colorme9 {
+  color: hsl(0, 100%, 50%);
+}
